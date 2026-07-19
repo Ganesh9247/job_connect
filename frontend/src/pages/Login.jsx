@@ -63,7 +63,7 @@ const Login = () => {
                                 </div>
                                 <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)}
                                     className="appearance-none block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:text-sm transition-all"
-                                    placeholder="••••••••" />
+                                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" />
                             </div>
                         </div>
                     </div>

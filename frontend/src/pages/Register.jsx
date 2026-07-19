@@ -71,7 +71,7 @@ const Register = () => {
                             </div>
                             <input type="password" required value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})}
                                 className="appearance-none block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:text-sm"
-                                placeholder="••••••••" />
+                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" />
                         </div>
                     </div>
                     <div>
