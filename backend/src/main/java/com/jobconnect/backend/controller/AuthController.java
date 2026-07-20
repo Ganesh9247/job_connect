@@ -28,16 +28,20 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
-        
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();    
-        String role = userDetails.getAuthorities().iterator().next().getAuthority();
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtUtils.generateJwtToken(authentication);
+            
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();    
+            String role = userDetails.getAuthorities().iterator().next().getAuthority();
 
-        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getEmail(), role));
+            return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getEmail(), role));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body(new MessageResponse("Login Error: " + e.getClass().getName() + " - " + e.getMessage()));
+        }
     }
 
     @PostMapping("/register")
