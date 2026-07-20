@@ -57,4 +57,13 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
+    @GetMapping("/debug/{email}")
+    public ResponseEntity<?> debugUser(@PathVariable String email) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+        return ResponseEntity.ok("Hash length: " + user.getPassword().length() + ", Hash: " + user.getPassword());
+    }
 }
