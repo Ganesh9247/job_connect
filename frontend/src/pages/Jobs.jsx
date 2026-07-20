@@ -13,7 +13,7 @@ const Jobs = () => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const res = await api.get('/jobs');
+                const res = await api.get('/jobs/public');
                 setJobs(res.data);
                 setFilteredJobs(res.data);
             } catch (err) {
